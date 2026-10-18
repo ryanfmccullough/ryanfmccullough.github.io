@@ -38,6 +38,7 @@
     --ink: #1B2229;
     --muted: #5B6670;
     --accent: #0E5A60;
+    --accent2: #B5651D;
     --accent-soft: #D4E7E4;
     --line: #D9DEDA;
     --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
@@ -49,6 +50,7 @@
       --ink: #E8ECEA;
       --muted: #9AA6AE;
       --accent: #6FBDBE;
+      --accent2: #E0A060;
       --accent-soft: #1E3A3C;
       --line: #2B3439;
     }
@@ -58,6 +60,7 @@
     --ink: #E8ECEA;
     --muted: #9AA6AE;
     --accent: #6FBDBE;
+    --accent2: #E0A060;
     --accent-soft: #1E3A3C;
     --line: #2B3439;
   }
@@ -140,12 +143,29 @@
     max-width: 58ch;
     margin-top: 0.5rem;
   }
-  .ax { stroke: var(--line); stroke-width: 1; }
+  .grid { stroke: var(--line); stroke-width: 1; }
+  .ax { stroke: var(--muted); stroke-width: 1; }
+  .tick { font-family: var(--sans); font-size: 11px; fill: var(--muted); }
   .ax-label { font-family: var(--sans); font-size: 12px; fill: var(--muted); }
-  .trace { fill: none; stroke: var(--accent); stroke-width: 1.75; stroke-linecap: round; }
-  .arm { fill: var(--bg); stroke: var(--accent); stroke-width: 1.75; }
-  .arm.pair { fill: var(--accent); }
-  .spread { stroke: var(--accent); stroke-width: 1.25; stroke-dasharray: 2 3; }
+  .leg { font-family: var(--sans); font-size: 11.5px; fill: var(--ink); }
+  .fit { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 5 4; }
+  .dot { fill: var(--accent); stroke: none; }
+  .dot.ring { stroke: var(--ink); stroke-width: 2; }
+  .tri { fill: var(--accent2); stroke: none; }
+
+  figure.pipe { margin: 2rem 0 1.6rem; padding: 0; max-width: 62ch; }
+  figure.pipe svg { width: 100%; height: auto; display: block; }
+  figure.pipe figcaption { font-family: var(--sans); font-size: 0.95rem; color: var(--muted); line-height: 1.5; margin-top: 0.5rem; }
+  .box { fill: none; stroke: var(--line); stroke-width: 1.25; }
+  .box-accent { stroke: var(--accent); }
+  .box-title { font-family: var(--sans); font-size: 12.5px; font-weight: 600; fill: var(--ink); }
+  .small { font-family: var(--sans); font-size: 11px; fill: var(--muted); }
+  .thresh { stroke: var(--accent2); stroke-width: 1; stroke-dasharray: 3 3; }
+  .score { fill: none; stroke: var(--accent); stroke-width: 1.75; stroke-linecap: round; }
+  .arrow { stroke: var(--muted); stroke-width: 1.25; }
+  .arrowhead { fill: var(--muted); }
+  .alerts line { stroke: var(--accent); stroke-width: 1.25; }
+  .alerts circle { fill: var(--accent); }
 
   /* Sections */
   section { margin-top: 4.5rem; }
@@ -206,10 +226,6 @@
     .portrait { width: 5rem; height: 5rem; }
     section { margin-top: 3.5rem; }
   }
-  @media (prefers-reduced-motion: no-preference) {
-    .trace { stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw 1.6s ease-out 0.2s forwards; }
-    @keyframes draw { to { stroke-dashoffset: 0; } }
-  }
 </style>
 </head>
 <body>
@@ -231,26 +247,44 @@
     </ul>
 
     <figure class="curve" aria-describedby="curve-caption">
-      <svg viewBox="0 0 680 230" role="img" aria-label="Schematic chart: candidate alerts per patient-day on the horizontal axis, median warning time on the vertical axis, ten designs lying on a single rising curve.">
-        <line class="ax" x1="48" y1="190" x2="660" y2="190"/>
-        <line class="ax" x1="48" y1="20" x2="48" y2="190"/>
-        <text class="ax-label" x="660" y="212" text-anchor="end">candidate alerts per patient-day</text>
-        <text class="ax-label" x="40" y="22" text-anchor="end" transform="rotate(-90 40 22)" dominant-baseline="hanging">median warning time</text>
-        <path class="trace" d="M 70 176 C 150 160, 210 128, 290 98 S 470 50, 640 38"/>
-        <!-- repeat runs of one configuration spread along the curve -->
-        <line class="spread" x1="300" y1="95" x2="392" y2="68"/>
-        <circle class="arm" cx="92" cy="172" r="4.5"/>
-        <circle class="arm" cx="138" cy="160" r="4.5"/>
-        <circle class="arm" cx="196" cy="138" r="4.5"/>
-        <circle class="arm" cx="248" cy="116" r="4.5"/>
-        <circle class="arm pair" cx="300" cy="95" r="4.5"/>
-        <circle class="arm pair" cx="338" cy="83" r="4.5"/>
-        <circle class="arm pair" cx="392" cy="68" r="4.5"/>
-        <circle class="arm" cx="470" cy="52" r="4.5"/>
-        <circle class="arm" cx="548" cy="44" r="4.5"/>
-        <circle class="arm" cx="624" cy="39" r="4.5"/>
+      <svg viewBox="0 0 680 300" role="img" aria-label="Scatter chart of ten scored alert policies: candidate alerts on the horizontal axis from 5,000 to 11,000, median lead time on the vertical axis from 160 to 340 minutes. All ten points lie close to one straight line, 22.65 minutes per 1,000 candidates, R squared 0.963. Four ringed points are repeat runs of one configuration and are spread along the same line.">
+      <line class="grid" x1="56" y1="249.5" x2="664" y2="249.5"/>
+      <text class="tick" x="50" y="253.5" text-anchor="end">160</text>
+      <line class="grid" x1="56" y1="197.1" x2="664" y2="197.1"/>
+      <text class="tick" x="50" y="201.1" text-anchor="end">200</text>
+      <line class="grid" x1="56" y1="144.8" x2="664" y2="144.8"/>
+      <text class="tick" x="50" y="148.8" text-anchor="end">240</text>
+      <line class="grid" x1="56" y1="92.5" x2="664" y2="92.5"/>
+      <text class="tick" x="50" y="96.5" text-anchor="end">280</text>
+      <line class="grid" x1="56" y1="40.2" x2="664" y2="40.2"/>
+      <text class="tick" x="50" y="44.2" text-anchor="end">320</text>
+      <text class="tick" x="129.8" y="272" text-anchor="middle">5,000</text>
+      <text class="tick" x="216.7" y="272" text-anchor="middle">6,000</text>
+      <text class="tick" x="303.5" y="272" text-anchor="middle">7,000</text>
+      <text class="tick" x="390.4" y="272" text-anchor="middle">8,000</text>
+      <text class="tick" x="477.3" y="272" text-anchor="middle">9,000</text>
+      <text class="tick" x="564.1" y="272" text-anchor="middle">10,000</text>
+      <text class="tick" x="651.0" y="272" text-anchor="middle">11,000</text>
+      <line class="ax" x1="56" y1="256.0" x2="664" y2="256.0"/>
+      <line class="fit" x1="62.1" y1="241.1" x2="649.5" y2="40.7"/>
+      <circle class="dot ring" cx="119.4" cy="217.8" r="5.5"><title>mamba Arm A: 4,880 candidates, 184 min</title></circle>
+      <circle class="dot" cx="492.5" cy="102.4" r="5.5"><title>mamba Arm B: 9,175 candidates, 272 min</title></circle>
+      <circle class="dot ring" cx="431.6" cy="95.2" r="5.5"><title>mamba Arm C: 8,474 candidates, 278 min</title></circle>
+      <circle class="dot ring" cx="101.2" cy="241.4" r="5.5"><title>mamba R0: 4,670 candidates, 166 min</title></circle>
+      <circle class="dot ring" cx="122.2" cy="226.0" r="5.5"><title>mamba R0b: 4,912 candidates, 178 min</title></circle>
+      <circle class="dot" cx="571.1" cy="75.3" r="5.5"><title>mamba R1: 10,081 candidates, 293 min</title></circle>
+      <circle class="dot" cx="137.3" cy="227.3" r="5.5"><title>mamba R2: 5,086 candidates, 177 min</title></circle>
+      <circle class="dot" cx="434.6" cy="94.7" r="5.5"><title>mamba R3: 8,509 candidates, 278 min</title></circle>
+      <path class="tri" d="M 588.7 67.2 L 595.2 78.7 L 582.2 78.7 Z"><title>patchtst Arm A: 10,283 candidates, 294 min</title></path>
+      <path class="tri" d="M 132.3 193.5 L 138.8 205.0 L 125.8 205.0 Z"><title>patchtst Arm B: 5,029 candidates, 197 min</title></path>
+      <text class="ax-label" x="360" y="296" text-anchor="middle">candidate alerts</text>
+      <text class="ax-label" x="14" y="135" text-anchor="middle" transform="rotate(-90 14 135)">median lead time (min)</text>
+      <line class="fit" x1="70" y1="29" x2="96" y2="29"/><text class="leg" x="104" y="33">fit: 22.65 min per 1,000 candidates, R² = 0.963</text>
+      <path class="tri" d="M 83 46 L 89.5 57.5 L 76.5 57.5 Z"/><text class="leg" x="104" y="57">PatchTST</text>
+      <circle class="dot" cx="83" cy="76" r="5.5"/><text class="leg" x="104" y="80">Mamba-SSM</text>
+      <circle class="dot ring" cx="83" cy="99" r="5.5"/><text class="leg" x="104" y="103">same configuration, repeated at one seed</text>
       </svg>
-      <figcaption id="curve-caption">Schematic of the praxis's central result. Ten scored alert policies fell on one curve: each additional alert per patient-day bought warning time at a diminishing rate, and repeating a single configuration (filled points) moved it along the curve rather than off it.</figcaption>
+      <figcaption id="curve-caption">Figure 5.2 of the praxis. Ten scored alert policies, two model architectures, one fixed harness. Warning time and alert volume fall on a single line, 22.65 minutes of lead time per 1,000 candidate alerts. The four ringed points are one configuration run four times at one seed: the repeats spread along the line by more than the gap between the two architectures.</figcaption>
     </figure>
   </header>
 
@@ -258,6 +292,39 @@
     <h2>Beyond prediction</h2>
     <p>A model that predicts late-onset sepsis well is not yet a useful early-warning system. In a neonatal intensive care unit its value depends on what happens after the score: how it is thresholded, how often it is allowed to alert, and how much warning time those alerts buy against the clinician attention they consume.</p>
     <p>My doctoral praxis treats that conversion as the engineering problem. It specifies a fixed verification harness in which the alert policy, workload budget, calibration, and metrics are held constant, so that model architecture can be varied as a controlled design variable. Two backbones, PatchTST and a backend-verified Mamba state-space model, were indistinguishable on rank-order discrimination yet produced alert streams that differed by a factor of 2.1 in candidate volume and 110 minutes in median warning time. Repeating one configuration under identical conditions moved warning time by more than the gap between the two models, which is why the harness measures its own run-to-run variation before any difference between designs is reported.</p>
+
+    <figure class="pipe" aria-describedby="pipe-caption">
+      <svg viewBox="0 0 680 150" role="img" aria-label="Three-stage diagram: a continuous risk score crossing a threshold, feeding decision logic that applies a workload budget and refractory rules, producing a discrete stream of delivered alerts over time.">
+        <!-- stage 1: risk score -->
+        <rect class="box" x="4" y="22" width="196" height="106" rx="6"/>
+        <text class="box-title" x="102" y="42" text-anchor="middle">Continuous risk score</text>
+        <line class="thresh" x1="22" y1="82" x2="182" y2="82"/>
+        <text class="small" x="22" y="118" text-anchor="start">dashed line: alert threshold</text>
+        <path class="score" d="M 22 104 C 40 100, 50 96, 62 92 S 76 70, 84 72 S 96 108, 112 106 S 128 66, 140 62 S 158 100, 182 100"/>
+        <!-- arrow -->
+        <path class="arrow" d="M 206 75 H 232"/><path class="arrowhead" d="M 232 75 l -7 -4.5 v 9 z"/>
+        <!-- stage 2: decision logic -->
+        <rect class="box box-accent" x="242" y="22" width="196" height="106" rx="6"/>
+        <text class="box-title" x="340" y="42" text-anchor="middle">Decision logic</text>
+        <text class="small" x="340" y="68" text-anchor="middle">workload budget</text>
+        <text class="small" x="340" y="86" text-anchor="middle">refractory interval</text>
+        <text class="small" x="340" y="104" text-anchor="middle">calibration</text>
+        <!-- arrow -->
+        <path class="arrow" d="M 444 75 H 470"/><path class="arrowhead" d="M 470 75 l -7 -4.5 v 9 z"/>
+        <!-- stage 3: alert stream -->
+        <rect class="box" x="480" y="22" width="196" height="106" rx="6"/>
+        <text class="box-title" x="578" y="42" text-anchor="middle">Delivered alert stream</text>
+        <line class="ax" x1="498" y1="104" x2="660" y2="104"/>
+        <g class="alerts">
+          <line x1="520" y1="104" x2="520" y2="76"/><circle cx="520" cy="74" r="4"/>
+          <line x1="566" y1="104" x2="566" y2="76"/><circle cx="566" cy="74" r="4"/>
+          <line x1="598" y1="104" x2="598" y2="76"/><circle cx="598" cy="74" r="4"/>
+          <line x1="642" y1="104" x2="642" y2="76"/><circle cx="642" cy="74" r="4"/>
+        </g>
+        <text class="small" x="660" y="118" text-anchor="end">time</text>
+      </svg>
+      <figcaption id="pipe-caption">The object of study. A model's risk score becomes clinically meaningful only after decision logic turns it into delivered alerts; the harness holds that logic fixed so architectures can be compared on what they cost and what they buy.</figcaption>
+    </figure>
     <p>The result is a reproducible, claims-bounded method for pricing an AI early-warning model in the units a unit cares about before clinical study: false alerts per patient-day, recall, missed events, and lead time. It is engineering verification on a synthetic cohort, with pipeline feasibility confirmed on authentic neonatal signals from PhysioNet. It is not clinical validation, and the work says so throughout.</p>
 
     <dl class="contrib">

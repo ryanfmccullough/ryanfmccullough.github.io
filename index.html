@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ryan F. McCullough</title>
+<meta name="description" content="Ryan F. McCullough is a systems engineer and Doctor of Engineering whose research designs workload-aware AI early warning for the neonatal intensive care unit.">
+<link rel="canonical" href="https://ryanfmccullough.com/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Ryan F. McCullough">
+<meta property="og:description" content="Systems engineer. Doctor of Engineering. AI early warning for the neonatal ICU, priced in alerts per patient-day and minutes of warning.">
+<meta property="og:url" content="https://ryanfmccullough.com/">
+<meta property="og:image" content="https://github.com/ryanfmccullough.png?size=460">
+<meta name="theme-color" content="#F6F7F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#151A1E" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230E5A60'/%3E%3Cpath d='M5 22 C10 22 11 10 14 10 S18 24 21 24 S25 12 27 12' fill='none' stroke='%23F6F7F5' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ryan F. McCullough",
+  "url": "https://ryanfmccullough.com/",
+  "image": "https://github.com/ryanfmccullough.png?size=460",
+  "jobTitle": "Systems engineer",
+  "worksFor": { "@type": "Organization", "name": "Decision Lens" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "The Pennsylvania State University" },
+  "knowsAbout": ["systems engineering", "AI verification and validation", "clinical decision support", "neonatal early warning", "self-supervised learning", "physiologic time series"],
+  "sameAs": ["https://github.com/ryanfmccullough"]
+}
+</script>
+<style>
+  :root {
+    --bg: #F6F7F5;
+    --ink: #1B2229;
+    --muted: #5B6670;
+    --accent: #0E5A60;
+    --accent-soft: #D4E7E4;
+    --line: #D9DEDA;
+    --serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --sans: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #151A1E;
+      --ink: #E8ECEA;
+      --muted: #9AA6AE;
+      --accent: #6FBDBE;
+      --accent-soft: #1E3A3C;
+      --line: #2B3439;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #151A1E;
+    --ink: #E8ECEA;
+    --muted: #9AA6AE;
+    --accent: #6FBDBE;
+    --accent-soft: #1E3A3C;
+    --line: #2B3439;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    font-feature-settings: "kern", "liga", "onum";
+  }
+  a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  .page {
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: 0 1rem 5rem;
+  }
+
+  /* Hero */
+  .hero { padding-top: 4.5rem; }
+  .hero-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: clamp(2.4rem, 7vw, 3.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.75rem;
+    font-variation-settings: "opsz" 72;
+  }
+  .hero .lede {
+    font-size: 1.3rem;
+    line-height: 1.45;
+    margin: 0;
+    max-width: 30ch;
+  }
+  .portrait {
+    flex: 0 0 auto;
+    width: 6.5rem;
+    height: 6.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--bg);
+    box-shadow: 0 0 0 1px var(--line);
+  }
+  .links {
+    font-family: var(--sans);
+    font-size: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.6rem;
+    margin: 1.6rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* The curve */
+  figure.curve {
+    margin: 3rem 0 0;
+    padding: 0;
+  }
+  figure.curve svg { width: 100%; height: auto; display: block; }
+  figure.curve figcaption {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 58ch;
+    margin-top: 0.5rem;
+  }
+  .ax { stroke: var(--line); stroke-width: 1; }
+  .ax-label { font-family: var(--sans); font-size: 12px; fill: var(--muted); }
+  .trace { fill: none; stroke: var(--accent); stroke-width: 1.75; stroke-linecap: round; }
+  .arm { fill: var(--bg); stroke: var(--accent); stroke-width: 1.75; }
+  .arm.pair { fill: var(--accent); }
+  .spread { stroke: var(--accent); stroke-width: 1.25; stroke-dasharray: 2 3; }
+
+  /* Sections */
+  section { margin-top: 4.5rem; }
+  h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.9rem;
+    line-height: 1.15;
+    margin: 0 0 1.1rem;
+    letter-spacing: -0.005em;
+  }
+  p { margin: 0 0 1.1rem; max-width: 62ch; }
+  p:last-child { margin-bottom: 0; }
+
+  dl.contrib { margin: 1.6rem 0 0; padding: 0; max-width: 62ch; }
+  dl.contrib dt {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--ink);
+    margin: 0;
+  }
+  dl.contrib dd {
+    margin: 0.15rem 0 1rem;
+    color: var(--muted);
+    font-size: 1.05rem;
+  }
+
+  ul.pubs { list-style: none; padding: 0; margin: 0; max-width: 62ch; }
+  ul.pubs li { margin: 0 0 1.4rem; padding-left: 1.4rem; text-indent: -1.4rem; }
+  ul.pubs li .kind {
+    display: block;
+    text-indent: 0;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-top: 0.15rem;
+  }
+
+  .interests { color: var(--muted); }
+
+  address { font-style: normal; }
+  address ul { list-style: none; padding: 0; margin: 0; font-family: var(--sans); font-size: 1.05rem; }
+  address li { margin: 0.25rem 0; }
+
+  footer {
+    margin-top: 5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 560px) {
+    .hero { padding-top: 3rem; }
+    .hero-row { flex-direction: column-reverse; align-items: flex-start; }
+    .portrait { width: 5rem; height: 5rem; }
+    section { margin-top: 3.5rem; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .trace { stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw 1.6s ease-out 0.2s forwards; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="hero">
+    <div class="hero-row">
+      <div>
+        <h1>Ryan F.<br>McCullough</h1>
+        <p class="lede">Systems engineer working on AI early warning for the neonatal ICU. Doctor of Engineering, Penn State.</p>
+      </div>
+      <img class="portrait" src="https://github.com/ryanfmccullough.png?size=260" width="104" height="104" alt="Ryan F. McCullough">
+    </div>
+    <ul class="links">
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="https://github.com/ryanfmccullough">GitHub</a></li>
+      <li><a href="mailto:hello@ryanfmccullough.com">hello@ryanfmccullough.com</a></li>
+    </ul>
+
+    <figure class="curve" aria-describedby="curve-caption">
+      <svg viewBox="0 0 680 230" role="img" aria-label="Schematic chart: candidate alerts per patient-day on the horizontal axis, median warning time on the vertical axis, ten designs lying on a single rising curve.">
+        <line class="ax" x1="48" y1="190" x2="660" y2="190"/>
+        <line class="ax" x1="48" y1="20" x2="48" y2="190"/>
+        <text class="ax-label" x="660" y="212" text-anchor="end">candidate alerts per patient-day</text>
+        <text class="ax-label" x="40" y="22" text-anchor="end" transform="rotate(-90 40 22)" dominant-baseline="hanging">median warning time</text>
+        <path class="trace" d="M 70 176 C 150 160, 210 128, 290 98 S 470 50, 640 38"/>
+        <!-- repeat runs of one configuration spread along the curve -->
+        <line class="spread" x1="300" y1="95" x2="392" y2="68"/>
+        <circle class="arm" cx="92" cy="172" r="4.5"/>
+        <circle class="arm" cx="138" cy="160" r="4.5"/>
+        <circle class="arm" cx="196" cy="138" r="4.5"/>
+        <circle class="arm" cx="248" cy="116" r="4.5"/>
+        <circle class="arm pair" cx="300" cy="95" r="4.5"/>
+        <circle class="arm pair" cx="338" cy="83" r="4.5"/>
+        <circle class="arm pair" cx="392" cy="68" r="4.5"/>
+        <circle class="arm" cx="470" cy="52" r="4.5"/>
+        <circle class="arm" cx="548" cy="44" r="4.5"/>
+        <circle class="arm" cx="624" cy="39" r="4.5"/>
+      </svg>
+      <figcaption id="curve-caption">Schematic of the praxis's central result. Ten scored alert policies fell on one curve: each additional alert per patient-day bought warning time at a diminishing rate, and repeating a single configuration (filled points) moved it along the curve rather than off it.</figcaption>
+    </figure>
+  </header>
+
+  <section id="research">
+    <h2>Beyond prediction</h2>
+    <p>A model that predicts late-onset sepsis well is not yet a useful early-warning system. In a neonatal intensive care unit its value depends on what happens after the score: how it is thresholded, how often it is allowed to alert, and how much warning time those alerts buy against the clinician attention they consume.</p>
+    <p>My doctoral praxis treats that conversion as the engineering problem. It specifies a fixed verification harness in which the alert policy, workload budget, calibration, and metrics are held constant, so that model architecture can be varied as a controlled design variable. Two backbones, PatchTST and a backend-verified Mamba state-space model, were indistinguishable on rank-order discrimination yet produced alert streams that differed by a factor of 2.1 in candidate volume and 110 minutes in median warning time. Repeating one configuration under identical conditions moved warning time by more than the gap between the two models, which is why the harness measures its own run-to-run variation before any difference between designs is reported.</p>
+    <p>The result is a reproducible, claims-bounded method for pricing an AI early-warning model in the units a unit cares about before clinical study: false alerts per patient-day, recall, missed events, and lead time. It is engineering verification on a synthetic cohort, with pipeline feasibility confirmed on authentic neonatal signals from PhysioNet. It is not clinical validation, and the work says so throughout.</p>
+
+    <dl class="contrib">
+      <dt>A requirements-driven alerting instrument</dt>
+      <dd>False alerts per patient-day, refractory behavior, constrained threshold selection, and lead time treated as formal design variables rather than reporting afterthoughts.</dd>
+      <dt>A backbone-agnostic self-supervised framework</dt>
+      <dd>Representation learning on multichannel neonatal physiology that lets the architecture vary while the evaluation context stays fixed.</dd>
+      <dt>Calibration and uncertainty as governance</dt>
+      <dd>Both treated as operational requirements of safe thresholding, not optional diagnostics.</dd>
+      <dt>A verification ladder</dt>
+      <dd>Synthetic-first verification, public-waveform feasibility, and clinical validation kept as distinct levels of evidence with distinct claims.</dd>
+    </dl>
+  </section>
+
+  <section id="publications">
+    <h2>Publications and talks</h2>
+    <ul class="pubs">
+      <li>McCullough, R. F., Krall, A., &amp; McCullough, K. (2026). Designing AI-enabled neonatal early-warning systems with backbone-agnostic self-supervised learning. In <i>Proceedings of the IISE Annual Conference &amp; Expo 2026</i>. Institute of Industrial and Systems Engineers.
+        <span class="kind">Conference paper</span></li>
+      <li>McCullough, R. F. (2026). <i>Beyond prediction: Designing workload-aware AI early warning for the neonatal intensive care unit.</i> Doctor of Engineering praxis, The Pennsylvania State University. Defended September 2026.
+        <span class="kind">Doctoral praxis</span></li>
+      <li>McCullough, R., &amp; Krall, A. (2026, February 12). <a href="https://iise.secure-platform.com/hspi2026/solicitations/102012/sessiongallery/schedule/items/94949">Smarter early-warning for newborns: Reducing delays and alarm fatigue in the NICU</a>. IISE Healthcare Systems Process Improvement Conference, Atlanta, GA.
+        <span class="kind">Presentation</span></li>
+    </ul>
+  </section>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>I lead the services department at Decision Lens, a software company whose decision-science platform supports planning and prioritization in the public sector. I have been there for over twelve years, most of it spent getting structured decision methods adopted by organizations that have to defend their choices.</p>
+    <p>I defended my Doctor of Engineering praxis at The Pennsylvania State University in September 2026. The research treats AI for neonatal early warning as a systems-engineering problem rather than a prediction problem: the interesting constraints are alarm burden, patient instability, and finite clinician attention, and the interesting question is how a design behaves inside them.</p>
+    <p class="interests">Working interests: systems engineering for safety-critical health technology, AI verification and validation, workload-aware clinical decision support, physiologic time-series modeling, self-supervised learning, alarm governance, and reproducible engineering evidence packages.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <address>
+      <ul>
+        <li><a href="mailto:hello@ryanfmccullough.com">hello@ryanfmccullough.com</a></li>
+        <li><a href="https://github.com/ryanfmccullough">github.com/ryanfmccullough</a></li>
+      </ul>
+    </address>
+  </section>
+
+  <footer>Ryan F. McCullough, 2026.</footer>
+</main>
+</body>
+</html>

@@ -129,23 +129,9 @@
     list-style: none;
   }
 
-  /* The curve */
-  figure.curve {
-    margin: 3rem 0 0;
-    padding: 0;
-  }
-  figure.curve img { width: 100%; height: auto; display: block; border-radius: 6px; background: #fff; padding: 0.6rem; box-sizing: border-box; border: 1px solid var(--line); }
-  figure.curve figcaption {
-    font-family: var(--sans);
-    font-size: 0.95rem;
-    color: var(--muted);
-    line-height: 1.5;
-    max-width: 58ch;
-    margin-top: 0.5rem;
-  }
   .ax { stroke: var(--muted); stroke-width: 1; }
 
-  figure.pipe { margin: 2rem 0 1.6rem; padding: 0; max-width: 62ch; }
+  figure.pipe { margin: 3rem 0 0; padding: 0; max-width: 100%; }
   figure.pipe svg { width: 100%; height: auto; display: block; }
   figure.pipe figcaption { font-family: var(--sans); font-size: 0.95rem; color: var(--muted); line-height: 1.5; margin-top: 0.5rem; }
   .box { fill: none; stroke: var(--line); stroke-width: 1.25; }
@@ -240,17 +226,6 @@
       <li><a href="mailto:hello@ryanfmccullough.com">hello@ryanfmccullough.com</a></li>
     </ul>
 
-    <figure class="curve" aria-describedby="curve-caption">
-      <img src="img/fig-5-3.png" width="1430" height="1014" alt="Scatter chart titled Warning Time Is Bought with Candidate Volume. Candidate alerts on the horizontal axis from 4,000 to 11,000, median warning time on the vertical axis from 160 to 320 minutes. Dozens of runs from both architectures lie along one dashed line, 22.65 minutes per 1,000 candidates, R squared 0.963." loading="eager">
-      <figcaption id="curve-caption">Figure 5.3 of the praxis. Each point is one run on the test fold, both architectures, all four training configurations. Another 1,000 candidate alerts buys about 23 more minutes of warning, and the relationship holds across architectures. What differs between designs is where they sit on this line, and the harness is what measures that.</figcaption>
-    </figure>
-  </header>
-
-  <section id="research">
-    <h2>Beyond prediction</h2>
-    <p>A model that predicts late-onset sepsis well is not yet a useful early-warning system. In a neonatal intensive care unit its value depends on what happens after the score: how it is thresholded, how often it is allowed to alert, and how much warning time those alerts buy against the clinician attention they consume.</p>
-    <p>My doctoral praxis treats that conversion as the engineering problem. It specifies a fixed verification harness in which the alert policy, workload budget, calibration, and metrics are held constant, so that model architecture can be varied as a controlled design variable. Two backbones, PatchTST and a backend-verified Mamba state-space model, were indistinguishable on rank-order discrimination yet produced alert streams that differed by a factor of 2.1 in candidate volume and 110 minutes in median warning time. Repeating one configuration under identical conditions moved warning time by more than the gap between the two models, which is why the harness measures its own run-to-run variation before any difference between designs is reported.</p>
-
     <figure class="pipe" aria-describedby="pipe-caption">
       <svg viewBox="0 0 680 150" role="img" aria-label="Three-stage diagram: a continuous risk score crossing a threshold, feeding decision logic that applies a workload budget and refractory rules, producing a discrete stream of delivered alerts over time.">
         <!-- stage 1: risk score -->
@@ -281,8 +256,15 @@
         </g>
         <text class="small" x="660" y="118" text-anchor="end">time</text>
       </svg>
-      <figcaption id="pipe-caption">After Figure 1.1 of the praxis. The object of study: A model's risk score becomes clinically meaningful only after decision logic turns it into delivered alerts; the harness holds that logic fixed so architectures can be compared on what they cost and what they buy.</figcaption>
+      <figcaption id="pipe-caption">After Figure 1.1 of the praxis. The object of study: a model's risk score becomes clinically meaningful only after decision logic turns it into delivered alerts; the harness holds that logic fixed so architectures can be compared on what they cost and what they buy.</figcaption>
     </figure>
+  </header>
+
+  <section id="research">
+    <h2>Beyond prediction</h2>
+    <p>A model that predicts late-onset sepsis well is not yet a useful early-warning system. In a neonatal intensive care unit its value depends on what happens after the score: how it is thresholded, how often it is allowed to alert, and how much warning time those alerts buy against the clinician attention they consume.</p>
+    <p>My doctoral praxis treats that conversion as the engineering problem. It specifies a fixed verification harness in which the alert policy, workload budget, calibration, and metrics are held constant, so that model architecture can be varied as a controlled design variable. Two backbones, PatchTST and a backend-verified Mamba state-space model, were indistinguishable on rank-order discrimination yet produced alert streams that differed by a factor of 2.1 in candidate volume and 110 minutes in median warning time. Repeating one configuration under identical conditions moved warning time by more than the gap between the two models, which is why the harness measures its own run-to-run variation before any difference between designs is reported.</p>
+
     <p>The result is a reproducible, claims-bounded method for pricing an AI early-warning model in the units a unit cares about before clinical study: false alerts per patient-day, recall, missed events, and lead time. It is engineering verification on a synthetic cohort, with pipeline feasibility confirmed on authentic neonatal signals from PhysioNet. It is not clinical validation, and the work says so throughout.</p>
 
     <dl class="contrib">

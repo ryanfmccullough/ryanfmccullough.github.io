@@ -296,8 +296,8 @@
     <h2>Code</h2>
     <p>The praxis codebase is private while technology-transfer questions are settled. Public work on open physiologic datasets:</p>
     <ul class="pubs">
-      <li><a href="https://github.com/ryanfmccullough/ecg-calibration-ptbxl">ecg-calibration-ptbxl</a>. Calibrated ECG classification on PTB-XL: a compact baseline, then what the accuracy number leaves out: expected calibration error before and after temperature scaling, and an operating-point table of alerts per 100 recordings against sensitivity.
-        <span class="kind">Python, PyTorch. Scaffold and tests complete; baseline results in progress.</span></li>
+      <li><a href="https://github.com/ryanfmccullough/ecg-calibration-ptbxl">ecg-calibration-ptbxl</a>. Calibrated ECG classification on PTB-XL: a compact 1-D ResNet baseline (macro AUROC 0.92 across the five diagnostic superclasses), then what the accuracy number leaves out. The raw network was overconfident in every class; temperature scaling lowered calibration error in all five. Holding 90% sensitivity costs 35 to 49 alerts per 100 recordings depending on the class, and for the rarest class three alerts in four are false.
+        <span class="kind">Python, PyTorch, 17 tests. Engineering verification on a public dataset, nothing clinical.</span></li>
     </ul>
   </section>
 
